@@ -11,7 +11,7 @@ export const TotalPlayers = () => {
   const { data, isLoading } = useQuery({
     queryKey: 'totalPlayers',
     queryFn: fetchPlayersInfo,
-    refetchInterval: 5_000
+    refetchInterval: 60_000
   });
 
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ export const TotalPlayers = () => {
 
   return (
     <Box onClick={navigateToPlayersTable}>
-      <BoxHeader title={'Game Info'} />
+      <BoxHeader title={'Game Stats'} />
       <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
         <p className='text-content'>Total Mints: </p>
         {isLoading ? (
