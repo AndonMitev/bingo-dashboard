@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&family=Roboto:wght@300&display=swap');
+
+:root {
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
+
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0 0 20px;
+
+  background-image: url('./assets/light-shine-graphics-bright-wallpaper-preview.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+
+.text-content {
+  font-size: clamp(16px, 4vw, 22px);
+  align-items: center;
+}
+
+@media screen and (max-width: 600px) {
+  .text-content {
+    font-size: clamp(
+      16px,
+      4vw,
+      22px
+    ); /* increase font size for smaller screens */
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .text-content {
+    font-size: clamp(
+      16px,
+      4vw,
+      22px
+    ); /* increase font size for even smaller screens */
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+td,
+th {
+  font-weight: bold;
+  color: #cddfea;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0 0 20px;
+}
