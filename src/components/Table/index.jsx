@@ -1,8 +1,14 @@
 import './style.css';
 
-export const Table = ({ tableHeaders, tableData }) => {
+export const Table = ({ tableHeaders, tableData, onRowPressed }) => {
+  const handleOnClick = (data) => {
+    if (onRowPressed) {
+      onRowPressed(data);
+    }
+  };
+
   return (
-    <table class='responsibility-table'>
+    <table className='responsibility-table'>
       <thead>
         <tr>
           {tableHeaders.map((header) => (
@@ -18,9 +24,19 @@ export const Table = ({ tableHeaders, tableData }) => {
       </thead>
       <tbody>
         {tableData.map((data, idx) => (
-          <tr key={idx}>
+          <tr
+            key={idx}
+            onClick={() => handleOnClick(data)}
+            style={{
+              cursor: onRowPressed ? 'pointer' : 'default'
+            }}
+          >
             {data.map((info) => (
-              <td key={info} className='text-content'>
+              <td
+                key={info}
+                className='text-content'
+                style={{ color: onRowPressed ? 'cyan' : null }}
+              >
                 {info}
               </td>
             ))}

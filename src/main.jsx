@@ -4,22 +4,32 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import App from './App';
-import { PlayersTable } from './screens/PlayersTable';
 
 import './index.css';
-
-const queryClient = new QueryClient();
+import { SymbolDetailsScreen } from './screens/SymbolDetails';
+import { Home } from './screens/Home';
+import { WinnersScreen } from './screens/Winners';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />
+    element: <Home />
   },
   {
-    path: '/players',
-    element: <PlayersTable />
+    path: '/home',
+    element: <Home />
+  },
+  {
+    path: '/symbol/:symbol',
+    element: <SymbolDetailsScreen />
+  },
+  {
+    path: '/winners',
+    element: <WinnersScreen />
   }
 ]);
+
+export const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

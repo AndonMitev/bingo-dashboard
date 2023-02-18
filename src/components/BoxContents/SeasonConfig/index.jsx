@@ -6,8 +6,11 @@ import { Box } from '../../Box';
 import { BoxHeader } from '../../BoxHeader';
 import { Loader } from '../../ContentLoader';
 
-const formatTimestamp = (timestamp) =>
+export const formatTimestamp = (timestamp) =>
   dayjs(timestamp * 1000).format('D-MM-YYYY HH:mm:ss A');
+
+export const formatAddress = (address) =>
+  address.slice(0, 6) + '...' + address.slice(-6);
 
 export const SeasonConfig = () => {
   const { data, isLoading } = useQuery('currentSeason', getCurrentSeason);
