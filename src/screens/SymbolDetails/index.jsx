@@ -25,12 +25,8 @@ export const SymbolDetailsScreen = () => {
       .map((e) => Object.values(e).filter((e, idx) => idx !== 0))
       .map((e) => {
         console.log(e);
-        const [timestamp, address, txHash] = e;
-        return [
-          formatTimestamp(timestamp),
-          formatAddress(address),
-          formatAddress(txHash)
-        ];
+        const [address] = e;
+        return [formatAddress(address)];
       });
   }, [data]);
 

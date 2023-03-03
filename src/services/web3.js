@@ -39,24 +39,26 @@ export const getWinners = async () => {
     topics: ['0xe6b9e1659282e93b3a484308db69e5d1cac21051d45ee0fcb6f72399541cec86']
   })
 
-  const blocks = logs.map(log => provider.getBlock(log.blockNumber));
 
 
-  const blockTimestamps = await (await Promise.all(blocks)).map((block, idx) => ({
-    timestamp: block.timestamp,
-    txHash: logs[idx].transactionHash
-  }))
+  const original = ['0x03f2cf40d6FaC1ACAE9A6C4FC78da55dc337bCC7',
+    '0x4a802f0fbEe479c7586198A92DD8E411229D16E4',
+    '0x0C36ad77Dc9C60Ec819018e6adE4F39cADF8826B',
+    '0x062E4A752a14326485c07B5781C30e5b9A91312b',
+    '0x268d5748E73F7A53CdCDAa068556d196341F3c6e']
+    .map(addr => ({
+      address: addr,
+    }))
 
-
-  return logs.map((log, idx) => {
+  return [...original, ...logs.map((log, idx) => {
     const parsed = contract.interface.parseLog(log);
+
+
 
     return {
       address: parsed.args[0],
-      timestamp: blockTimestamps[idx].timestamp,
-      txHash: blockTimestamps[idx].txHash
     }
-  })
+  })]
 
 
 }

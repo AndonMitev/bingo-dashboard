@@ -14,7 +14,7 @@ import { getWinners } from '../../services/web3';
 
 export const WinnersScreen = () => {
   const { data, isLoading } = useQuery('winners', getWinners);
-
+  console.log(data);
   const winnersData = useQuery({
     queryKey: ['winnersData', data],
     queryFn: () => fetchPlayersData(data),
@@ -51,20 +51,6 @@ export const WinnersScreen = () => {
                   </p>
                   <p className='text-content' style={{ marginBottom: 0 }}>
                     Winner: #{idx + 1}
-                  </p>
-                  <p className='text-content' style={{ marginBottom: 0 }}>
-                    Minted at: {formatTimestamp(data[idx].timestamp)}
-                  </p>
-                  <p
-                    className='text-content'
-                    style={{
-                      marginBottom: 0,
-                      cursor: 'pointer',
-                      color: 'cyan'
-                    }}
-                    onClick={() => openExplorer(data[idx].txHash)}
-                  >
-                    Transaction Hash: {formatAddress(data[idx].txHash)}
                   </p>
                 </div>
               </div>
