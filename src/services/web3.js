@@ -1,10 +1,35 @@
 import { Contract, JsonRpcProvider, AbiCoder } from 'ethers';
 import BINGO_ABI from './bingoAbi.js';
 
-const providerUrl = 'https://gateway.opn.network/node/ext/bc/2VsZe5DstWw2bfgdx3YbjKcMsJnNDjni95sZorBEdk9L9Qr9Fr/rpc';
-const contractAddress = '0x9d17b2b18f75a61ffb556ff9a28bbb3055c58543';
+import { Formatter, StaticJsonRpcProvider } from '@ethersproject/providers';
 
-const provider = new JsonRpcProvider(providerUrl);
+class CustomFormatter extends Formatter {
+  getDefaultFormats() {
+    return {
+      ...super.getDefaultFormats(),
+      block: {
+        ...super.getDefaultFormats().block,
+        timestamp: super.bigNumber,
+      },
+    };
+  }
+}
+
+export class CustomJsonRpcProvider extends StaticJsonRpcProvider {
+  formatter = new CustomFormatter();
+}
+
+const providerUrl = 'https://gateway.opn.network/node/ext/bc/2VsZe5DstWw2bfgdx3YbjKcMsJnNDjni95sZorBEdk9L9Qr9Fr/rpc';
+const contractAddress = '0x70CDEe8c5A3c3cEe705cCDe6Ddaa1Db1a31F4fA7';
+
+const provider = new CustomJsonRpcProvider(
+  {
+    url: 'https://k0v5srs0v6-k0rf0tow1d-rpc.kr0-aws.kaleido.io/',
+    user: 'k0nq7p2xxt',
+    password: 'riFDj2aRMjarC2EWnQqaGb2fOg9X219oBY8hTjOuhTs',
+  },
+  3776,
+);
 const contract = new Contract(contractAddress, BINGO_ABI, provider);
 
 export const getWinners = async () => {
